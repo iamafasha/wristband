@@ -20,6 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
         'password',
     ];
 
@@ -41,4 +42,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //Exclude me scope
+    public function scopeExcludeMe($query)
+    {
+        return $query->where('id', '!=', auth()->id());
+    }
+
+    //can be one doctor
+    public function doctor()
+    {
+        return $this->hasOne(Doctor::class);
+    }
+
+    public function patient()
+    {
+        return $this->hasOne(Patient::class);
+    }
+
+
+
+    public function contactPatients()
+    {
+        return $this->hasManyThrough(Patient::class, PatientContactPerson::class, 'user_id', 'id', 'id', 'patient_id');
+    }
 }

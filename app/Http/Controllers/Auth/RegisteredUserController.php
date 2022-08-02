@@ -21,6 +21,12 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
+        //check if there is a user in a database
+        $user = User::first();
+        if($user){
+            return redirect()->route('login')->with('error', 'There is already a admin user in the database. Please login.');
+        }
+
         return Inertia::render('Auth/Register');
     }
 
@@ -34,15 +40,24 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
+
+        //check if there is a user in a database
+        $user = User::first();
+        if($user){
+            return redirect()->route('login')->with('error', 'There is already a admin user in the database. Please login.');
+        }
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
+            'phone_number' => 'required|string|max:255',
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $request->phone_number,
             'password' => Hash::make($request->password),
         ]);
 

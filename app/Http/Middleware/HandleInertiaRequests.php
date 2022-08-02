@@ -43,6 +43,11 @@ class HandleInertiaRequests extends Middleware
                     'location' => $request->url(),
                 ]);
             },
+            "flash" => function () use ($request) {
+                return [
+                    "error" => $request->session()->get("error"),
+                ];
+            },
         ]);
     }
 }

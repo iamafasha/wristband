@@ -10,6 +10,7 @@ import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
 defineProps({
     canResetPassword: Boolean,
     status: String,
+    flash: Object,
 });
 
 const form = useForm({
@@ -33,6 +34,10 @@ const submit = () => {
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
             {{ status }}
+        </div>
+
+        <div v-if="flash.error" class="mb-4 font-medium text-sm text-red-600">
+            {{ flash.error }}
         </div>
 
         <form @submit.prevent="submit">
