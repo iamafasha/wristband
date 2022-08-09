@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Device;
+use App\Models\PatientDevice;
+use App\Models\PatientDeviceReading;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
 
@@ -56,4 +58,24 @@ class Devices extends Controller
         return redirect()->route('devices');
     }
 
+
+
+    //Api Controllers
+
+
+    public function getDeviceData(Request $request, $device){
+        
+        $patientDevices = PatientDevice::where('device_id', $device)->firstOrFail()->id;
+        $results = PatientDeviceReading::create([
+            'patient_device_id' => $patientDevices,
+            'temperature' => $request->temperature,
+            'heart_rate' => $request->heart_rate,
+            'blood_pressure' => $request->blood_pressure,
+            'oxygen_saturation' => $request->oxygen_saturation,
+            'respiratory_rate' => $request->respiratory_rate,
+            'latitude' => $request->latitude,
+        ]);
+
+        return response()->json($results);
+    }
 }
