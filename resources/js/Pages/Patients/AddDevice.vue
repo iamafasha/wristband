@@ -10,7 +10,10 @@ import BreezeValidationErrors from '@/Components/ValidationErrors.vue';
 import { Head , useForm } from '@inertiajs/inertia-vue3';
 
 
-const props = defineProps(['patient', 'devices']);
+const props = defineProps({
+    'patient':{},
+    'devices': { type: Array, required: false, default: []}
+    });
 
 
 const devices_options = computed(() => {

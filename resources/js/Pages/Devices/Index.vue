@@ -4,7 +4,9 @@ import { Head, useForm } from '@inertiajs/inertia-vue3';
 import BreezeLink from '@/Components/Link.vue';
 import BreezeButton from '@/Components/Button.vue';
 
-const props = defineProps(['devices']);
+const props = defineProps({
+    'devices': { type: Array, required: false, default: []}
+});
 const form = useForm({terms: false,});
 
 </script>

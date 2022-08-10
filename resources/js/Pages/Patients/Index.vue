@@ -4,7 +4,10 @@ import { Head, useForm } from '@inertiajs/inertia-vue3';
 import BreezeLink from '@/Components/Link.vue';
 import BreezeButton from '@/Components/Button.vue';
 
-const props = defineProps(['patients']);
+//if patients are undefined set patients to an empty array
+const props = defineProps({
+    'patients':  { type: Array, required: false, default: []}
+}) ;
 const form = useForm({terms: false,});
 
 </script>
