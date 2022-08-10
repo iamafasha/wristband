@@ -21,7 +21,7 @@ const form = useForm({terms: false,});
                             <!-- User data -->
                             <div class="flex flex-col justify-center items-center">
                                 <div class="flex justify-center">
-                                    <img class="w-32 h-32 rounded-full mx-auto mb-4" src="https://i.pravatar.cc/300" alt="">
+                                    <img class="w-32 h-32 rounded-full mx-auto mb-4" :src="`https://ui-avatars.com/api/?name=${props.patient.user.name}&background=random&color=random`" alt="">
                                 </div>
                                 <div class="flex justify-center">
                                     <h1 class="text-center text-2xl font-bold">{{ props.patient.user.name }}</h1>
