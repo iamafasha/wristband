@@ -25,7 +25,7 @@ const form = useForm({terms: false,});
 
                         <div class="pt-5">
                             <ul class="devices border-spacing-2 table w-full">
-                                <li v-for="device in this.devices" :key="device.id" class="device table-row ">
+                                <li v-for="device in props.devices" :key="device.id" class="device table-row ">
 
                                         <div class="device-name table-cell">
                                             <h3>{{ device.mac_address }}</h3>

@@ -27,7 +27,7 @@ const form = useForm({terms: false,});
 
                         <div class="pt-5">
                             <ul class="doctors border-spacing-2 table w-full">
-                                <li v-for="doctor in this.doctors" :key="doctor.id" class="doctor table-row ">
+                                <li v-for="doctor in props.doctors" :key="doctor.id" class="doctor table-row ">
 
                                         <div class="doctor-name table-cell">
                                             <h3>{{ doctor.user.name }}</h3>
