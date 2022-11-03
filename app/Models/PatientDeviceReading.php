@@ -17,5 +17,6 @@ class PatientDeviceReading extends Model
         'oxygen_saturation',
         'respiratory_rate',
         'latitude',
+        'longitude'
     ];
 }

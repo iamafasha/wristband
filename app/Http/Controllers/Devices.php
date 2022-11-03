@@ -77,6 +77,7 @@ class Devices extends Controller
             'oxygen_saturation' => $request->oxygen_saturation,
             'respiratory_rate' => $request->respiratory_rate,
             'latitude' => $request->latitude,
+            'longitude' => $request->latitude,
         ]);
 
         return response()->json($results);
