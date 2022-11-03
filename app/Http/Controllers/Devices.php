@@ -59,15 +59,18 @@ class Devices extends Controller
     }
 
 
+    /**
+     * Api controller
+     */
 
-    //Api Controllers
+    public function getDeviceData(Request $request, $device_mac)
+    {
 
-
-    public function getDeviceData(Request $request, $device){
-        
-        $patientDevices = PatientDevice::where('device_id', $device)->firstOrFail()->id;
+        $patientDevice = PatientDevice::whereHas('device', function ($query) use ($device_mac) {
+            return $query->where('mac_address', $device_mac);
+        })->firstOrFail()->id;
         $results = PatientDeviceReading::create([
-            'patient_device_id' => $patientDevices,
+            'patient_device_id' => $patientDevice,
             'temperature' => $request->temperature,
             'heart_rate' => $request->heart_rate,
             'blood_pressure' => $request->blood_pressure,

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Devices;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,4 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 //get device data
-Route::post('/device/{device}', 'App\Http\Controllers\Devices@getDeviceData');
+Route::post('/device/{device}', [Devices::class, 'getDeviceData']);
