@@ -47,6 +47,25 @@ const form = useForm({terms: false,});
                                 </form>
                             </div>
                         </div>
+                        <div class="p-6 mt-2 shadow-sm sm:rounded-lg bg-white border-b border-gray-200 h-fit">
+                            <div class="flex flex-col w-full">
+                                <div>Blood Pressure (mmHg)</div>
+                                <div class="text-blue-500"> <span>{{ props.latest_reading.systolic }}</span> / <span>{{ props.latest_reading.diastolic }}</span></div>
+                            </div>
+
+                            <div class="flex justify-around mt-10">
+                                <div class="flex flex-col w-1/2">
+                                    <div>Temp (<span>&#176;</span>C)</div>
+                                    <div class="text-blue-500">{{ props.latest_reading.temperature }}</div>
+                                </div>
+
+                                <div class="flex flex-col w-1/2">
+                                    <div>Heart Rate (bpm)</div>
+                                    <div class="text-blue-500">{{ props.latest_reading.heart_rate }}</div>
+                                </div>
+                            </div>
+                           </div>
+                        </div>
                         <div class="w-8/12 pl-4">
                             <div class="p-6 w-full shadow-sm sm:rounded-lg bg-white border-b border-gray-200">
                                 <h2>Devices</h2>
