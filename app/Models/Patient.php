@@ -29,6 +29,10 @@ class Patient extends Model
         return $this->hasOne(PatientDevice::class)->orderBy('created_at', 'desc');
     }
 
+    public function readings(){
+        return $this->hasManyThrough(PatientDeviceReading::class, PatientDevice::class);
+    }
+
     public function doctors(){
         return $this->hasManyThrough(Doctor::class, PatientDoctor::class, 'patient_id', 'id', 'id', 'doctor_id');
     }
