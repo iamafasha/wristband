@@ -1,13 +1,15 @@
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, reactive, ref } from 'vue';
 
-defineProps(['modelValue']);
+const props = defineProps(['modelValue']);
 
-defineEmits(['update:modelValue']);
+const emits = defineEmits(['update:modelValue']);
 
 const input = ref(null);
+const _modelValue = ref("");
 
 onMounted(() => {
+    _modelValue.value = props.modelValue;
     if (input.value.hasAttribute('autofocus')) {
         input.value.focus();
     }
@@ -19,7 +21,7 @@ onMounted(() => {
 
 <template>
 
-    <select v-model.lazy="modelValue" @change="$emit('update:modelValue', $event.target.value)" ref="input">
+    <select v-model.lazy="_modelValue" @change="$emit('update:modelValue', $event.target.value)" ref="input">
         <option disabled value="">Please select one</option>
         <option value="doctor">Doctor</option>
         <option value="admin">Admin</option>
