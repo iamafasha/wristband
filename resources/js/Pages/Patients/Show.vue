@@ -6,7 +6,19 @@ import BreezeButton from '@/Components/Button.vue';
 import PatientGraph from '@/Containers/PatientGraph.vue';
 import { reactive } from 'vue';
 
-const props = defineProps(['patient', 'latest_reading']);
+const props = defineProps({
+    patient:{
+        type:Object
+    },
+    latest_reading:{
+        type: Object,
+        required:false,
+        default(rawProps) {
+            console.log(rawProps)
+            return { systolic: 'hello' }
+        },
+    }
+});
 const form = useForm({terms: false,});
 
 const data = reactive([["2000-06-05", 116], ["2000-06-06", 129], ["2000-06-07", 135], ["2000-06-08", 86], ["2000-06-09", 73], ["2000-06-10", 85], ["2000-06-11", 73], ["2000-06-12", 68], ["2000-06-13", 92], ["2000-06-14", 130], ["2000-06-15", 245], ["2000-06-16", 139], ["2000-06-17", 115], ["2000-06-18", 111], ["2000-06-19", 309], ["2000-06-20", 206], ["2000-06-21", 137], ["2000-06-22", 128], ["2000-06-23", 85], ["2000-06-24", 94], ["2000-06-25", 71], ["2000-06-26", 106], ["2000-06-27", 84], ["2000-06-28", 93], ["2000-06-29", 85], ["2000-06-30", 73], ["2000-07-01", 83], ["2000-07-02", 125], ["2000-07-03", 107], ["2000-07-04", 82], ["2000-07-05", 44], ["2000-07-06", 72], ["2000-07-07", 106], ["2000-07-08", 107], ["2000-07-09", 66], ["2000-07-10", 91], ["2000-07-11", 92], ["2000-07-12", 113], ["2000-07-13", 107], ["2000-07-14", 131], ["2000-07-15", 111], ["2000-07-16", 64], ["2000-07-17", 69], ["2000-07-18", 88], ["2000-07-19", 77], ["2000-07-20", 83], ["2000-07-21", 111], ["2000-07-22", 57], ["2000-07-23", 55], ["2000-07-24", 60]])
@@ -51,23 +63,29 @@ const data = reactive([["2000-06-05", 116], ["2000-06-06", 129], ["2000-06-07", 
                                 </form>
                             </div>
                         </div>
-                        <div class="p-6 mt-2 shadow-sm sm:rounded-lg bg-white border-b border-gray-200 h-fit">
-                            <div class="flex flex-col w-full">
-                                <div>Blood Pressure (mmHg)</div>
-                                <div class="text-blue-500"> <span>{{ props.latest_reading.systolic }}</span> / <span>{{ props.latest_reading.diastolic }}</span></div>
-                            </div>
-
-                            <div class="flex justify-around mt-10">
-                                <div class="flex flex-col w-1/2">
-                                    <div>Temp (<span>&#176;</span>C)</div>
-                                    <div class="text-blue-500">{{ props.latest_reading.temperature }}</div>
+                        <div   class="p-6 mt-2 shadow-sm sm:rounded-lg bg-white border-b border-gray-200 h-fit">
+                            <div v-if="props.latest_reading">
+                                <div class="flex flex-col w-full">
+                                    <div>Blood Pressure (mmHg)</div>
+                                    <div class="text-blue-500"> <span>{{  props.latest_reading && props.latest_reading.systolic }}</span> / <span>{{  props.latest_reading && props.latest_reading.diastolic }}</span></div>
                                 </div>
 
-                                <div class="flex flex-col w-1/2">
-                                    <div>Heart Rate (bpm)</div>
-                                    <div class="text-blue-500">{{ props.latest_reading.heart_rate }}</div>
+                                <div class="flex justify-around mt-10">
+                                    <div class="flex flex-col w-1/2">
+                                        <div>Temp (<span>&#176;</span>C)</div>
+                                        <div class="text-blue-500">{{  props.latest_reading && props.latest_reading.temperature }}</div>
+                                    </div>
+
+                                    <div class="flex flex-col w-1/2">
+                                        <div>Heart Rate (bpm)</div>
+                                        <div class="text-blue-500">{{ props.latest_reading && props.latest_reading.heart_rate }}</div>
+                                    </div>
                                 </div>
                             </div>
+                            <div v-else >
+                                <p>User has no data to show so far. Attach devices to them.</p>
+                            </div>
+
                            </div>
                         </div>
                         <div class="w-8/12 pl-4">
