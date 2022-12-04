@@ -91,4 +91,4 @@ Route::resource('patients', App\Http\Controllers\Patients::class , [
     ]
 ] )->middleware(['auth', 'verified']);
 
-Route::get('api/patient/{patient}/data', 'App\Http\Controllers\Patients@dataAPI');
+Route::get('api/patient/{patient}/data', 'App\Http\Controllers\Patients@dataAPI')->name('patient.data.api');
