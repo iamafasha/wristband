@@ -11,6 +11,7 @@ use App\Models\PatientDoctor;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Symfony\Component\HttpFoundation\Response;
 
 class Patients extends Controller
 {
@@ -254,6 +255,41 @@ class Patients extends Controller
         return redirect()->route('patient.show', $patient->id);
     }
 
+    public function dataAPI(Request $request, Patient $patient){
+        // dd($patient);
+        $start_time = strtotime($request->start_time ?? 'now - 6hours');
+        $end_time = strtotime($request->end_time ?? 'now');
+
+        $data = $patient->readings()->whereBetween(
+            'patient_device_readings.created_at',
+            [date('Y-m-d H:i:s', $start_time), date('Y-m-d H:i:s', $end_time)]
+        )->orderBy('patient_device_readings.created_at', 'desc')
+            ->get();
+
+        $time = collect($this->timeRange($start_time, $end_time));
+
+        $data = $time->map(function ($time) use ($data){
+            $from = date('Y-m-d H:i:s', $time['from']);
+            $to = date('Y-m-d H:i:s', $time['to']);
+
+            $data = $data->filter(function ($item) use ($from, $to) {
+                if ($item->created_at->between($from, $to)) {
+                    return $item;
+                }
+            });
+
+            $time["data"] = [
+                'systolic' =>  $data->avg('diastolic') ?? 0,
+                'temperature' =>  $data->avg('temperature') ?? 0,
+                'diastolic' =>  $data->avg('diastolic') ?? 0,
+                'heart_rate' =>  $data->avg('heart_rate') ?? 0,
+            ];
+
+            return $time;
+        });
+
+        return response()->json($data, Response::HTTP_OK);
+    }
 
     /**
      * Summary of timeRange

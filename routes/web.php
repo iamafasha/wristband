@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -91,3 +90,5 @@ Route::resource('patients', App\Http\Controllers\Patients::class , [
         'destroy' => 'patient.destroy',
     ]
 ] )->middleware(['auth', 'verified']);
+
+Route::get('api/patient/{patient}/data', 'App\Http\Controllers\Patients@dataAPI');
