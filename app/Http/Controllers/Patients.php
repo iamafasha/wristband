@@ -279,10 +279,10 @@ class Patients extends Controller
             });
 
             $time["data"] = [
-                'systolic' =>  $data->avg('diastolic') ?? 0,
-                'temperature' =>  $data->avg('temperature') ?? 0,
-                'diastolic' =>  $data->avg('diastolic') ?? 0,
-                'heart_rate' =>  $data->avg('heart_rate') ?? 0,
+                'systolic' =>  round($data->avg('systolic'), 2) ?? 0,
+                'temperature' =>  round($data->avg('temperature'), 2) ?? 0,
+                'diastolic' => round($data->avg('diastolic'), 2) ?? 0,
+                'heart_rate' =>  round($data->avg('heart_rate'), 2) ?? 0,
             ];
 
             return $time;
@@ -298,7 +298,7 @@ class Patients extends Controller
      * @param mixed $step
      * @return array<array>
      */
-    public static function timeRange($start, $end, $step = 1800)
+    public static function timeRange($start, $end, $step = 200)
     {
         $return = array();
         for( $time = $start; $time <= $end; $time += $step )
