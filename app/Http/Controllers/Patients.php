@@ -254,4 +254,24 @@ class Patients extends Controller
         return redirect()->route('patient.show', $patient->id);
     }
 
+
+    /**
+     * Summary of timeRange
+     * @param mixed $start
+     * @param mixed $end
+     * @param mixed $step
+     * @return array<array>
+     */
+    public static function timeRange($start, $end, $step = 1800)
+    {
+        $return = array();
+        for( $time = $start; $time <= $end; $time += $step )
+            $return[$time] = [
+             'name' => date( 'Y-m-d g:ia', $time- $step )." - ".date( 'g:ia', $time ),
+             'from' =>  $time - $step,
+             'to' =>  $time,
+            ];
+        return $return;
+    }
+
 }
