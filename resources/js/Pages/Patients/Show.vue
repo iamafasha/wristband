@@ -81,6 +81,25 @@ const data = reactive([["2000-06-05", 116], ["2000-06-06", 129], ["2000-06-07", 
                                         <div class="text-blue-500">{{ props.latest_reading && props.latest_reading.heart_rate }}</div>
                                     </div>
                                 </div>
+
+                                <div class="flex justify-around mt-10">
+                                    <div class="flex flex-col w-1/2">
+                                        <div>SPo2 (<span>%</span>)</div>
+                                        <div class="text-blue-500">{{  props.latest_reading && props.latest_reading.oxygen_saturation }}</div>
+                                    </div>
+                                    <div class="flex flex-col w-1/2">
+                                         <a class="inline-flex items-center
+                                                px-4 py-2 bg-blue-100 border border-transparent
+                                                rounded-md font-semibold text-xs text-black uppercase
+                                                tracking-widest hover:bg-blue-300 active:bg-gray-900
+                                                focus:outline-none focus:border-gray-900 focus:shadow-outline-gray
+                                                transition ease-in-out duration-150"
+                                            :href="`https://www.google.com/maps/search/?api=1&query=${props.latest_reading.latitude},${props.latest_reading.longitude}`"
+                                            >view location</a>
+                                    </div>
+
+                                </div>
+
                             </div>
                             <div v-else >
                                 <p>User has no data to show so far. Attach devices to them.</p>

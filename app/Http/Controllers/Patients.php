@@ -258,7 +258,7 @@ class Patients extends Controller
     public function dataAPI(Request $request, Patient $patient){
         // dd($patient);
         $start_time = strtotime($request->start_time ?? 'now - 6hours');
-        $end_time = strtotime($request->end_time ?? 'now');
+        $end_time = strtotime($request->end_time ?? 'now + min');
 
         $data = $patient->readings()->whereBetween(
             'patient_device_readings.created_at',
@@ -298,7 +298,7 @@ class Patients extends Controller
      * @param mixed $step
      * @return array<array>
      */
-    public static function timeRange($start, $end, $step = 200)
+    public static function timeRange($start, $end, $step = 1000)
     {
         $return = array();
         for( $time = $start; $time <= $end; $time += $step )
