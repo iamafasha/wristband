@@ -258,7 +258,7 @@ class Patients extends Controller
     public function dataAPI(Request $request, Patient $patient){
         // dd($patient);
         $start_time = strtotime($request->start_time ?? 'now - 6hours');
-        $end_time = strtotime($request->end_time ?? 'now + min');
+        $end_time = strtotime($request->end_time ?? 'now + 2min');
 
         $data = $patient->readings()->whereBetween(
             'patient_device_readings.created_at',
