@@ -25,7 +25,7 @@ const data = reactive([["2000-06-05", 116], ["2000-06-06", 129], ["2000-06-07", 
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Patient" />
 
     <BreezeAuthenticatedLayout>
         <div class="py-12">

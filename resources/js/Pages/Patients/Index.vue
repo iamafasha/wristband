@@ -13,7 +13,7 @@ const form = useForm({terms: false,});
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Devices" />
 
     <BreezeAuthenticatedLayout>
         <div class="py-12">

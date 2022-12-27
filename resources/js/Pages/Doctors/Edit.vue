@@ -29,7 +29,7 @@ const submit = () => {
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Doctors" />
 
     <BreezeAuthenticatedLayout>
             <Head title="Doctor Create" />

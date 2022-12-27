@@ -27,7 +27,7 @@ const submit = () => {
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head title="Edit Patient" />
 
     <BreezeAuthenticatedLayout>
             <Head title="patient Create" />
@@ -52,7 +52,7 @@ const submit = () => {
                         <BreezeLabel for="phone_number" value="Phone Number" />
                         <BreezeInput id="phone" type="text" class="mt-1 block w-full" v-model="form.phone" required autocomplete="phone" />
                     </div>
-                    
+
                     <div class="flex items-center justify-end mt-4">
                         <BreezeButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                             Add
