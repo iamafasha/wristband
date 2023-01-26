@@ -64,7 +64,7 @@
                     })
              };
 
-            const intervalHandle = setInterval(updateGraphData, 10000);
+            const intervalHandle = setInterval(updateGraphData, 5000);
 
             onBeforeUnmount(() => { clearInterval(intervalHandle); });
 
