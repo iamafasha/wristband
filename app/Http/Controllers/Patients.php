@@ -264,29 +264,7 @@ class Patients extends Controller
             'patient_device_readings.created_at',
             [date('Y-m-d H:i:s', $start_time), date('Y-m-d H:i:s', $end_time)]
         )->orderBy('patient_device_readings.created_at', 'desc')
-            ->get();
-
-        $time = collect($this->timeRange($start_time, $end_time));
-
-        $data = $time->map(function ($time) use ($data){
-            $from = date('Y-m-d H:i:s', $time['from']);
-            $to = date('Y-m-d H:i:s', $time['to']);
-
-            $data = $data->filter(function ($item) use ($from, $to) {
-                if ($item->created_at->between($from, $to)) {
-                    return $item;
-                }
-            });
-
-            $time["data"] = [
-                'systolic' =>  round($data->avg('systolic'), 2) ?? 0,
-                'temperature' =>  round($data->avg('temperature'), 2) ?? 0,
-                'diastolic' => round($data->avg('diastolic'), 2) ?? 0,
-                'heart_rate' =>  round($data->avg('heart_rate'), 2) ?? 0,
-            ];
-
-            return $time;
-        });
+            ->get()->toArray();
 
         return response()->json($data, Response::HTTP_OK);
     }
