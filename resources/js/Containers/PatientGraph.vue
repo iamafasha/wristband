@@ -60,9 +60,7 @@
 
                 fetch(route('patient.data.api', props.id ))
                     .then(async res => {
-
                         state.data = await res.json();
-                        // console.log(await state.data);
                     })
              };
 
@@ -74,9 +72,7 @@
 
                 fetch(route('patient.data.api', props.id ))
                     .then(async res => {
-
                         state.data = await res.json();
-                        // console.log(await state.data);
                     })
             })
 
@@ -114,14 +110,10 @@
                 tooltip: {
                     trigger: 'axis'
                 },
-                xAxis: [
-                    {
-                        data: (state.data) ? ((Object.values(state.data))).map(x => x.name):[]
-                    }
-                ],
-                yAxis: [
-                    {}
-                ],
+                xAxis: {
+                    type: 'time',
+                },
+                yAxis: {},
                 grid: [
                     {
                     bottom: '15%'
@@ -129,18 +121,18 @@
                 ],
                 series: [
                     {
-                    type: 'line',
-                    name: 'Systolic',
-                    showSymbol: false,
-                    smooth:true,
-                    data: (state.data) ? Object.values(state.data).map(x=>x.data.systolic):[]
+                        type: 'line',
+                        name: 'Systolic',
+                        showSymbol: false,
+                        smooth:true,
+                        data: (state.data) ? Object.values(state.data).map(x => [(new Date(x.created_at)).getTime(), x.systolic]) :[]
                     },
                     {
                         type: 'line',
                         name: 'Diastolic',
                         showSymbol: false,
                         smooth:true,
-                        data: (state.data) ? Object.values(state.data).map(x=>x.data.diastolic):[]
+                        data: (state.data) ?  Object.values(state.data).map(x => [(new Date(x.created_at)).getTime(), x.diastolic]):[]
                     }
                 ]
             }
