@@ -266,7 +266,11 @@ class Patients extends Controller
         )->orderBy('patient_device_readings.created_at', 'desc')
             ->get()->toArray();
 
-        return response()->json($data, Response::HTTP_OK);
+        return response()->json([
+            'min' => $start_time * 1000,
+            'max' => $end_time * 1000,
+            'data' => $data
+        ], Response::HTTP_OK);
     }
 
     /**

@@ -112,6 +112,7 @@
                 },
                 xAxis: {
                     type: 'time',
+                    ...(state.data ?  { min:state.data.min, max:state.data.max}: {})
                 },
                 yAxis: {},
                 grid: [
@@ -125,14 +126,14 @@
                         name: 'Systolic',
                         showSymbol: false,
                         smooth:true,
-                        data: (state.data) ? Object.values(state.data).map(x => [(new Date(x.created_at)).getTime(), x.systolic]) :[]
+                        data: (state.data.data) ? Object.values(state.data.data).map(x => [(new Date(x.created_at)).getTime(), x.systolic]) :[]
                     },
                     {
                         type: 'line',
                         name: 'Diastolic',
                         showSymbol: false,
                         smooth:true,
-                        data: (state.data) ?  Object.values(state.data).map(x => [(new Date(x.created_at)).getTime(), x.diastolic]):[]
+                        data: (state.data.data) ?  Object.values(state.data.data).map(x => [(new Date(x.created_at)).getTime(), x.diastolic]):[]
                     }
                 ]
             }
