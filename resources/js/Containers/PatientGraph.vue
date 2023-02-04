@@ -78,12 +78,13 @@
 
             const option = computed(() => {
 
-                return {
-             color:['#fb8649', '#ae1029', '#26c238', '#9876aa', '#0065c2','#57904b','#d35b5c'],
+            return {
+                color:['#0a0a0a', '#ae1029', '#26c238', '#9876aa', '#0065c2','#57904b','#d35b5c'],
                 legend: {
                     orient: 'horizontal',
                     right: 10,
-                    top: '10'
+                    top: '10',
+
                 },
                 visualMap: [
                     {
@@ -104,7 +105,7 @@
                 ],
                 title:    {
                     left: 'center',
-                    text: 'Patient Pressure Graph',
+                    text: 'Blood Pressure Trend',
                     top:'5%'
                     },
                 tooltip: {
@@ -112,16 +113,16 @@
                 },
                 xAxis: {
                     type: 'time',
-                    name:"Time",
+                    name:"Time(s)",
                     // ...(state.data ?  { min:state.data.min, max:state.data.max}: {})
                 },
                 yAxis: {
-                    name:"DBP(mmHg)",
+                    name:"BP(mmHg)",
                     type:"value"
                 },
                 grid: [
                     {
-                    bottom: '15%'
+                        bottom: '15%'
                     }
                 ],
                 series: [
@@ -130,6 +131,7 @@
                         name: 'Systolic',
                         showSymbol: false,
                         smooth:true,
+                        lineStyle: {color: '#010101'},
                         data: (state.data.data) ? Object.values(state.data.data).map(x => [(new Date(x.created_at)).getTime(), x.systolic]) :[]
                     },
                     {
