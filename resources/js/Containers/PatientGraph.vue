@@ -112,9 +112,13 @@
                 },
                 xAxis: {
                     type: 'time',
+                    name:"Time",
                     ...(state.data ?  { min:state.data.min, max:state.data.max}: {})
                 },
-                yAxis: {},
+                yAxis: {
+                    name:"DBP(mmHg)",
+                    type:"value"
+                },
                 grid: [
                     {
                     bottom: '15%'
