@@ -96,6 +96,15 @@ const showingNavigationDropdown = ref(false);
                         <BreezeResponsiveNavLink :href="route('dashboard')" :active="route().current('dashboard')">
                             Dashboard
                         </BreezeResponsiveNavLink>
+                            <BreezeResponsiveNavLink :href="route('doctors')" :active="route().current('doctors')">
+                                Doctors
+                        </BreezeResponsiveNavLink>
+                        <BreezeResponsiveNavLink :href="route('devices'  )" :active="route().current('devices')">
+                            Devices
+                        </BreezeResponsiveNavLink>
+                        <BreezeResponsiveNavLink :href="route('patients'  )" :active="route().current('patients')">
+                            Patients
+                        </BreezeResponsiveNavLink>
                     </div>
 
                     <!-- Responsive Settings Options -->
