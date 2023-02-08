@@ -24,15 +24,15 @@ const form = useForm({terms: false,});
                         </div>
 
                         <div class="pt-5">
-                            <ul class="devices border-spacing-2 table w-full">
-                                <li v-for="device in props.devices" :key="device.id" class="device table-row ">
+                            <ul class="devices border-spacing-2 md:table w-full">
+                                <li v-for="device in props.devices" :key="device.id" class="device md:table-row ">
 
-                                        <div class="device-name table-cell">
+                                        <div class="device-name md:table-cell">
                                             <h3>{{ device.mac_address }}</h3>
                                         </div>
 
 
-                                        <div class="device-actions table-cell">
+                                        <div class="device-actions md:table-cell">
                                         <div class="flex justify-end">
                                                 <div class="device-edit">
                                                     <BreezeLink :href="route('device.edit', device.id)" class="ml-4">Edit</BreezeLink>

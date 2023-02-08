@@ -27,25 +27,25 @@ const form = useForm({terms: false,});
 
                         <div class="pt-5">
                             <ul class="doctors border-spacing-2 table w-full">
-                                <li v-for="doctor in props.doctors" :key="doctor.id" class="doctor table-row ">
+                                <li v-for="doctor in props.doctors" :key="doctor.id" class="doctor md:table-row ">
 
-                                        <div class="doctor-name table-cell">
+                                        <div class="doctor-name md:table-cell">
                                             <h3>{{ doctor.user.name }}</h3>
                                         </div>
 
-                                        <div class="doctor-name table-cell">
+                                        <div class="doctor-name md:table-cell">
                                             <h3>{{ doctor.user.email }}</h3>
                                         </div>
 
-                                        <div class="doctor-name table-cell">
+                                        <div class="doctor-name md:table-cell">
                                             <h3>{{ doctor.user.phone }}</h3>
                                         </div>
 
-                                        <div class="doctor-phone table-cell">
+                                        <div class="doctor-phone md:table-cell">
                                             <p>{{ doctor.role }}</p>
                                         </div>
 
-                                        <div class="doctor-actions table-cell">
+                                        <div class="doctor-actions md:table-cell">
                                         <div class="flex justify-end">
                                                 <div class="doctor-edit">
                                                     <BreezeLink :href="route('doctor.edit', doctor.id)" class="ml-4">Edit</BreezeLink>
