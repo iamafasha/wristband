@@ -25,22 +25,26 @@ const form = useForm({terms: false,});
                         </div>
 
                         <div class="pt-5">
-                            <ul class="patients border-spacing-2 table w-full">
-                                <li v-for="patient in props.patients" :key="patient.id" class="patient md:table-row ">
+                            <ul class="patients border-spacing-2 ">
+                                <li v-for="patient in props.patients"
+                                    :key="patient.id"
+                                    class="patient md:flex md:justify-between md:items-center p-2 mb-3 border">
 
-                                        <div class="patient-name md:table-row">
-                                            <h3>{{ patient.user.name }}</h3>
+                                        <div>
+                                            <div class="patient-name ">
+                                                <h3>{{ patient.user.name }}</h3>
+                                            </div>
+
+                                            <div class="patient-name">
+                                                <h3>{{ patient.user.phone }}</h3>
+                                            </div>
+
+                                            <div class="patient-name ">
+                                                <h3>{{ patient.user.email }}</h3>
+                                            </div>
                                         </div>
 
-                                        <div class="patient-name md:table-row">
-                                            <h3>{{ patient.user.phone }}</h3>
-                                        </div>
-
-                                        <div class="patient-name md:table-row">
-                                            <h3>{{ patient.user.email }}</h3>
-                                        </div>
-
-                                        <div class="patient-actions md:table-row">
+                                        <div class="patient-actions">
                                             <div class="flex justify-end">
                                                     <div class="patient-edit">
                                                         <BreezeLink :href="route('patient.show', patient.id)" class="ml-4">view</BreezeLink>
