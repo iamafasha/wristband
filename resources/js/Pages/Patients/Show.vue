@@ -110,11 +110,7 @@ const data = reactive([["2000-06-05", 116], ["2000-06-06", 129], ["2000-06-07", 
                                 </div>
 
                             </div>
-                        </div>
-                        <div class="md:w-8/12 mt-2  md:mt-0 md:pl-4">
-                            <div class="w-full overflow-hidden shadow-sm sm:rounded-lg bg-white border-b border-gray-200">
-                                <PatientGraph  :id="patient.id" />
-                            </div>
+
                             <div class="p-6 w-full shadow-sm sm:rounded-lg bg-white border-b border-gray-200 mt-5">
                                 <h2>Devices</h2>
 
@@ -182,6 +178,12 @@ const data = reactive([["2000-06-05", 116], ["2000-06-06", 129], ["2000-06-07", 
                                     </div>
                                 </div>
 
+                            </div>
+
+                        </div>
+                        <div class="md:w-8/12 mt-2  md:mt-0 md:pl-4">
+                            <div class="w-full overflow-hidden shadow-sm sm:rounded-lg bg-white border-b border-gray-200">
+                                <PatientGraph  :id="patient.id" />
                             </div>
 
                             <div class="p-6 w-full shadow-sm sm:rounded-lg bg-white border-b border-gray-200 mt-5">
