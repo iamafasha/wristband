@@ -23,6 +23,7 @@
         "vue": "^3.2.45"
     },
     "dependencies": {
+        "datatables.net-buttons": "^2.4.1",
         "datatables.net-responsive": "^2.5.0",
         "datatables.net-select": "^1.7.0",
         "datatables.net-vue3": "^2.1.2",
