@@ -9,7 +9,7 @@ DataTable.use(DataTablesCore);
 </script>
 
 <template>
-    <DataTable :data="data" class="display">
+    <DataTable :data="data" class="display" :options="{select: true,  order: [[5, 'desc']]}">
         <thead>
             <tr>
                 <th>Blood Pressure (mmHg)</th>
