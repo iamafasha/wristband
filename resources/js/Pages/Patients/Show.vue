@@ -5,6 +5,7 @@ import BreezeLink from '@/Components/Link.vue';
 import BreezeButton from '@/Components/Button.vue';
 import PatientGraph from '@/Containers/PatientGraph.vue';
 import { reactive } from 'vue';
+import PatientReadingTable from '@/Containers/PatientReadingTable.vue';
 
 const props = defineProps({
     patient:{
@@ -17,6 +18,9 @@ const props = defineProps({
             console.log(rawProps)
             return { systolic: 'hello' }
         },
+    },
+    readings:{
+        type: Object
     }
 });
 const form = useForm({terms: false,});
@@ -222,6 +226,23 @@ const data = reactive([["2000-06-05", 116], ["2000-06-06", 129], ["2000-06-07", 
                                         </BreezeLink>
                                     </div>
                                 </div>
+                            </div>
+
+
+                            <div class="p-6 w-full shadow-sm sm:rounded-lg bg-white border-b border-gray-200 mt-5">
+                                <PatientReadingTable :data="readings.data.map(function (data) {
+                                                        const {
+                                                            diastolic,
+                                                            systolic,
+                                                            heart_rate,
+                                                            oxygen_saturation,
+                                                            temperature,
+                                                            device_mac_address,
+                                                            created_at,
+                                                        } = data;
+                                                        let blood_pressure = systolic + '/' + diastolic;
+                                                        return [blood_pressure, heart_rate, oxygen_saturation, temperature, device_mac_address ,created_at];
+                                                        })" />
                             </div>
                         </div>
                     </div>
