@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PatientReadingsTableResource;
 use App\Models\Device;
 use App\Models\Doctor;
 use App\Models\Patient;
@@ -47,10 +48,14 @@ class Patients extends Controller
     {
 
         $patient = $patient->load(['user', 'devices', 'doctors.user', 'contactPersons']);
-        $latest_reading = $patient->readings()->orderBy('created_at', 'desc')->first();
+        $readingsQuery = $patient->readings()->with(['device'])->orderBy('created_at', 'desc');
+        $readings = $readingsQuery->get()->unique();
+        $latest_reading = $readings->first();
+
         return Inertia::render('Patients/Show', [
             'patient' => $patient,
-            'latest_reading' => $latest_reading
+            'latest_reading' => $latest_reading,
+            'readings' => new PatientReadingsTableResource($readings)
         ]);
     }
 
