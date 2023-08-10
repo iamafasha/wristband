@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 class PatientDeviceReading extends Model
 {
     use HasFactory;
@@ -20,4 +19,16 @@ class PatientDeviceReading extends Model
         'latitude',
         'longitude'
     ];
+
+    public function device()
+    {
+        return $this->hasOneThrough(
+            Device::class,
+            PatientDevice::class,
+            'id',
+            'id',
+            'patient_device_id',
+            'device_id'
+        );
+    }
 }
